@@ -3,13 +3,18 @@
   become: yes
 
   tasks:
+    - name: Restart network
+      service: name=network state=restarted
+      register: networkcheck
+    - name: Check network
+      debug: var=networkcheck
 
-#    - name: add epel repository
-#      yum: name=epel-release state=present
-#      register: epel_install
-#      
-#    - name: Debug details for epel
-#      debug: var=epel_install
+    - name: add epel repository
+      yum: name=epel-release state=present
+      register: epel_install
+      
+    - name: Debug details for epel
+      debug: var=epel_install
 
 
     - name: haveged installed
