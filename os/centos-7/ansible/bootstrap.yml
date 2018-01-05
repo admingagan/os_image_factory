@@ -5,7 +5,7 @@
   tasks:
 
     - name: add epel repository
-      shell: rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      command: rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 
     - name: haveged installed
