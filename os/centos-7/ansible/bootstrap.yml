@@ -5,7 +5,11 @@
   tasks:
 
     - name: add epel repository
-      command: rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      yum: name=epel-release state=present
+      register: epel_install
+      
+    - name: Debug details for epel
+      debug: var=epel_install
 
 
     - name: haveged installed
