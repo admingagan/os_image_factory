@@ -21,6 +21,13 @@
 
     - name: prepare target repository
       file: path=target/{{ bundle_path }} state=directory
+      
+    - name: ping to dl.fedoraproject.org
+      command: "ping -c 5 dl.fedoraproject.org"
+      register: ping_out
+      
+    - name: debug
+      debug: var=ping_out
 
     - name: use packer to build server image
       shell: "packer build -var 'bundle_path={{ bundle_path }}' -var 'source_image={{ bundle.img_base }}' -var 'image_name={{ bundle_target_name }}' -var 'build_flavor={{ vm_flavor }}' {{ packer_file }} > target/{{ bundle_path }}/packer.{{ bundle_target_name }}.log 2>&1"
