@@ -8,6 +8,12 @@
       register: networkcheck
     - name: Check network
       debug: var=networkcheck
+      
+    - name: Ping Google
+      shell: cat /etc/resolv.conf; ping -c2 172.217.160.206
+      register: pingout
+    - name: Pingout debug
+      debug: var=pingout
 
     - name: add epel repository
       yum: name=epel-release state=present
